@@ -1,0 +1,44 @@
+<div style="float: left;width: 12%;" >
+    <div class="panel panel-blog" >
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-link"></span>
+                博文快速链接
+                <span class="glyphicon glyphicon-chevron-up btn panel-collapse pull-right"  data-toggle="collapse" data-target="#quicklink-list"></span>
+            </h3>
+        </div>
+        <ul id="quicklink-list" class="list-group collapse in">
+            {% for mc in maincate_list %}
+                <li class="list-group-item" onmouseover="CateShow({{mc.id}})" onmouseout="CateHidden({{mc.id}})">
+                <a href="/category/{{mc.id}}" ><span class="hotest-post-title"><b>{{mc.name}}(
+                    {%for key,value in cate_d.items%}
+                        {%ifequal key mc.id%}
+                            {{value}}
+                        {%endifequal%}
+                    {%endfor%}
+                )</b></span></a>>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script >i=0;</script>
+    {%for mc,px in zip%}
+        <div class="sub_cate" id="sub_cate_{{mc.id}}" style="top:{{px}}px;">
+            <ul>
+                {%for cata in catalogue%}
+                    {%ifequal mc cata.catename%}
+                        <li class="list-group-item" onmouseover="CateShow({{mc.id}})" onmouseout="CateHidden({{mc.id}})" >
+                            <a href="/catalogue/{{cata.id}}"><span class="hotest-post-title"><b>{{cata.name}}</b></span></a>
+                        </li>
+                    {%endifequal%}
+                {%endfor%}
+            </ul>
+        </div>
+    {%endfor%}
+    <br>
+    <a href="https://yc.163yun.com/?tag=M_cnblog_lby_yb_ycdh"><img src="/static/image/adv9.png" alt="博客园 logo" style="border:0px"/></a>
+    <br><br><br><br><br><br>
+    <a href="https://zhidao.baidu.com/activity/university"><img src="/static/image/adv4.png" alt="博客园 logo" style="border:0px"/></a>
+
+</div>
+

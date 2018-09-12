@@ -1,0 +1,25 @@
+<div>
+    <div class="panel panel-blog">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-link"></span>
+                打赏
+                <span class="glyphicon glyphicon-remove btn panel-close pull-right"></span>
+                <span class="glyphicon glyphicon-chevron-up btn panel-collapse pull-right"  data-toggle="collapse" data-target="#links"></span>
+            </h3>
+        </div>
+        <div id="links" class="padding10 list-group collapse in" style="text-align:center;">
+            {% if post.author.alipay_qrcode_path %}
+                <span>支付宝</span>
+                <br/>
+                <img style="max-height:200px;max-width:200px;" alt="" id="alipay_img" src="{{ post.author.alipay_qrcode_path }}"/>
+            {% endif %}
+            {% if post.author.wechat_qrcode_path %}
+                <br/>
+                <span>微信支付</span>
+                <br/>
+                <img style="max-height:200px;max-width:200px;" alt="" id="alipay_img" src="{{ post.author.wechat_qrcode_path }}"/>
+            {% endif %}
+        </div>
+    </div>
+</div>

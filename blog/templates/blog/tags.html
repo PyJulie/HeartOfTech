@@ -1,0 +1,69 @@
+{% extends "./blog/base.html" %}
+
+{% block title %}
+    博客
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div id="container-blog" class="col-md-8 col-lg-9">
+            <!-- 左栏内容 -->
+            <div>
+
+                <!-- 首页标签列表 -->
+
+            <style>
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.tagslist {
+    overflow: hidden;
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+}
+.tagslist li {
+    float: left;
+    width: 20%;
+    font-size: 20px;
+    height: 56px;
+    overflow: hidden;
+    color: #999;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+.tagslist .tagname {
+    display: inline-block;
+    margin-right: 5px;
+    background-color: #e6e6e6;
+    color: #666;
+    padding: 2px 7px;
+    margin-bottom: 4px;
+}
+
+            </style>
+            <ul class="tagslist">
+                {% for tag in objects %}
+                    <li><a class="tagname" href="/tag/{{ tag.name }}">{{ tag.name }}</a><strong>x {{ tag.count }}</strong></li>
+
+                {% endfor %}
+            </ul>
+                <!-- 分页 -->
+                {% if objects %}
+                    {% include "./blog/include/pagination.html" %}
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="marginTop10 col-md-4 col-lg-3 hidden-xs">
+            {% include "./blog/include/blog_search.html" %}
+            {% include "./blog/include/hot_posts.html" %}
+            {% include "./blog/include/year_write_posts.html" %}
+            {% include "./blog/include/tag_cloud.html" %}
+            {% include "./blog/include/friendly_link.html" %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+<div>
+    <div class="panel panel-blog">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-link"></span>
+                标签云
+                <span class="glyphicon glyphicon-remove btn panel-close pull-right"></span>
+                <span class="glyphicon glyphicon-chevron-up btn panel-collapse pull-right"  data-toggle="collapse" data-target="#cloud"></span>
+            </h3>
+        </div>
+
+        <div id="cloud" class="padding10 list-group collapse in">
+        <div class="tagcloud">
+            {% for tag in tag_list %}
+                <a {# style="font-size:{{ tag.font_size }}pt" #} href="/tag/{{ tag.name }}">{{ tag.name }}({{ tag.count }})</a>
+            {% endfor %}
+        </div>
+        <hr/>
+        <div style="text-align: center;">
+            <a class="btn btn-info btn-block btn-xs margin2" href="/tags/">所有标签</a>
+        </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    tagcloud();
+</script>

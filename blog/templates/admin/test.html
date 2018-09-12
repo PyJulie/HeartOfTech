@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>级联下拉列表</title>
+    <meta charset="UTF-8">
+</head>
+
+<body onload="load()">
+    <div>
+        <select class='prov' id='prov' onchange='changeCity()'>
+            <option value=''>--请选择省--</option>
+        </select>
+        <select class='city' id='city'>
+            <option value=''>--请选择市--</option>
+        </select>
+    </div>
+
+    <script>
+        var province=document.getElementById("prov");
+        var city=document.getElementById("city");
+        var arr_prov=new Array(new Option("--请选择省--",''),new Option("湖南","hn"),new Option("广东","gd"));
+        var arr_city=new Array();
+        arr_city[0]=new Array(new Option("--请选择市--",''));
+        arr_city[1]=new Array(new Option("长沙",'cs'),new Option("娄底",'ld'),new Option("永州",'yz'));
+        arr_city[2]=new Array(new Option("广州",'gz'),new Option("深圳",'sz'));
+        //动态载入所有省份
+        function load(){
+            for(var i=0;i<arr_prov.length;i++){
+                province.options[i]=arr_prov[i];
+            }
+        }
+        //选中省份之后，根据索引动态载入相应城市
+        function changeCity(){
+            //清空上次的选项
+            city.options.length=0;
+            //获取省一级的下拉列表选中的索引
+            var index=province.selectedIndex;
+            for(var i=0;i<arr_city[index].length;i++){
+                city.options[i]=arr_city[index][i];
+            }
+        }
+    </script>
+</body>
+</html>

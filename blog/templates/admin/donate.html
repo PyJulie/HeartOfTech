@@ -1,0 +1,128 @@
+{% extends './admin/base.html' %}
+
+{% block js %}
+    <script src="/static/metronic/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/static/metronic/js/jquery.cookie.min.js" type="text/javascript"></script>
+    <script src="/static/js/blog-admin.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block css %}
+    <link href="/static/metronic/css/DT_bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/metronic/css/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main %}
+
+    <!-- BEGIN PAGE CONTAINER-->
+
+    <div class="container-fluid">
+
+        <!-- BEGIN PAGE HEADER-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                <h3 class="page-title">
+
+                    打赏管理
+
+                </h3>
+
+                <ul class="breadcrumb">
+
+
+
+                </ul>
+
+                <!-- END PAGE TITLE & BREADCRUMB-->
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE HEADER-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN SAMPLE TABLE PORTLET-->
+
+                <div class="portlet box red">
+
+                    <div class="portlet-title">
+
+                        <div class="caption"><i class="icon-flag"></i>二维码管理</div>
+
+                        <div class="tools">
+
+                            <a href="javascript:;" class="collapse"></a>
+
+                            <a href="javascript:;" class="remove"></a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="portlet-body">
+
+                    {# 这里应该放上两个二维码的现在内容以及上传按钮 #}
+                        <div class="qrcode">
+
+                        <form action="/admin/set/upload/qrcode" enctype="multipart/form-data" id="user_upload_qrcode_form" method="post">
+                            {% csrf_token %}
+                        {# 下面这个span的class的css还没引入 #}
+                            <span class="wp-user-rewards-alipay-title">支付宝</span>
+                            {% if user.alipay_qrcode_path %}
+                                <img style="max-height:200px;max-width:200px;" alt="" id="alipay_img" src="{{ user.alipay_qrcode_path }}"/>
+                            {% else %}
+                                <img style="max-height:200px;max-width:200px;" alt="" id="alipay_img" src="/static/image/no_qrcode.png"/>
+                            {% endif %}
+                            <input  accept="image/*" type="file" name="alipay" id="user_upload_alipay" onchange="filefujianChange(this)">
+                            <span class="wp-user-rewards-alipay-title">微信支付</span>
+                            {% if user.wechat_qrcode_path %}
+                                <img style="max-height:200px;max-width:200px;" alt="" id="wechat_img" src="{{ user.wechat_qrcode_path }}"/>
+                            {% else %}
+                                <img style="max-height:200px;max-width:200px;" alt="" id="wechat_img" src="/static/image/no_qrcode.png"/>
+                            {% endif %}
+                            <input  accept="image/*" type="file" name="wechat" id="user_upload_wechat" onchange="filefujianChange(this)">
+                            <button type="submit">上传二维码</button>
+                        </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- END SAMPLE TABLE PORTLET-->
+
+            </div>
+
+        </div>
+
+    </div>
+
+<script>
+                    function filefujianChange(target) {
+       var fileSize = 0;
+        fileSize = target.files[0].size;
+        var size = fileSize / 1024;
+        if(size>200){
+         alert("附件不能大于2M");
+         target.value="";
+         return
+        }
+        var name=target.value;
+        var fileName = name.substring(name.lastIndexOf(".")+1).toLowerCase();
+        if(fileName !="jpg" && fileName !="jpeg" && fileName !="pdf" && fileName !="png" && fileName !="dwg" && fileName !="gif" ){
+          alert("请选择图片格式文件上传(jpg,png,gif,dwg,pdf,gif等)！");
+            target.value="";
+            return
+        }
+      }
+                </script>
+
+{% endblock %}

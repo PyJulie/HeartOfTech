@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/metronic/image/favicon.ico">
+
+        <title>{% block title%} {% endblock%}</title>
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/zer0Blog.css" rel="stylesheet">
+		<link rel="stylesheet" href="/static/css/tagcloud.css">
+        <style type="text/css">
+            .sub_cate{
+                position: relative;
+                display: none;
+                left: 100px;
+                top: -20px;/*3个-146 -104 -62 -20*/
+                z-index: 1;
+            }
+        </style>
+        {% block css%} {% endblock%}
+
+        <!-- jquery JavaScript -->
+        <script src="/static/js/jquery-2.1.4.min.js"></script>
+        <script src="/static/js/jquery.cookie.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/tagcloud.min.js"></script>
+        <script type="text/javascript">
+            function CateShow(n){
+            document.getElementById("sub_cate_"+n)&&(document.getElementById("sub_cate_"+n).style.display="block");
+        }
+        function CateHidden(n){
+            document.getElementById("sub_cate_"+n)&&(document.getElementById("sub_cate_"+n).style.display="none");
+        }
+        </script>
+		<script src="/static/js/recommend.js"></script>
+        {% block js%}{% endblock%}
+    </head>
+
+    <body id="blog">
+        <!-- 导航栏 -->
+        {% include "./blog/include/nav.html" %}
+        <div id="main-blog">
+            {% include "./blog/include/quicklink.html" %}
+            <div id="container-blog" class="container">
+                {%block main%} {% endblock %}
+            </div><!-- /.container -->
+
+            <footer>
+                <div class="container">
+                         <div style="text-align: center" class="copyright" >
+        2018 &copy; Heart of Tech.
+        <!-- <a href="showUs.htm" target="_blank">关于我们</a> -->
+        <a href="/aboutus/">关于我们</a>
+        <a href="/contact/">联系我们</a>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

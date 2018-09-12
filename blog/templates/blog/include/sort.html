@@ -1,0 +1,23 @@
+    <div class="panel panel-blog">
+    <div class="panel-heading">
+        <h3>按发布时间排序</h3> 
+        <a href="{%url 'search' 'all' %}" class="btn btn-blog btn-xs margin2" >全部</a>
+        <a href="{%url 'search' 'twoweek' %}" class="btn btn-blog btn-xs margin2" >两星期内</a>
+        <a href="{%url 'search' 'onemonth' %}" class="btn btn-blog btn-xs margin2" >一月内</a>
+        <a href="{%url 'search' 'oneyear' %}" class="btn btn-blog btn-xs margin2" >一年内</a>
+    </div>
+    <div class="panel-heading">
+        <h3>按浏览次数排序</h3> 
+        <a href="{%url 'search' 0 %}" class="btn btn-blog btn-xs margin2">全部</a>
+        <a href="{%url 'search' 10 %}" class="btn btn-blog btn-xs margin2">10以上</a>
+        <a href="{%url 'search' 30 %}" class="btn btn-blog btn-xs margin2">30以上</a>
+        <a href="{%url 'search' 50 %}" class="btn btn-blog btn-xs margin2">50以上</a>
+    </div>
+    <div class="panel-heading">
+        <h3>按推荐数量排序</h3> 
+        <a href="{%url 'search' 'allblog' %}" class="btn btn-blog btn-xs margin2" >全部</a>
+        <a href="{%url 'search' 'recommend_count=20' %}" class="btn btn-blog btn-xs margin2" >20以上</a>
+        <a href="{%url 'search' 'recommend_count=50' %}" class="btn btn-blog btn-xs margin2" >50以上</a>
+        <a href="{%url 'search' 'recommend_count=100' %}" class="btn btn-blog btn-xs margin2" >100以上</a>
+    </div>
+    </div>

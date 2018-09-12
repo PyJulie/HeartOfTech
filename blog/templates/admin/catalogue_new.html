@@ -1,0 +1,131 @@
+{% extends './admin/base.html' %}
+
+{% block css %}
+    <link href="/static/metronic/css/jquery.fileupload-ui.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block js %}
+    <script src="/static/metronic/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+
+            $("#add_cata").click(function () {
+                $("#cata_form").submit();
+            });
+
+            $("#cata_form").validate({
+                ignore: "",
+                rules: {
+                    cataname: {
+                        required: true,
+                        maxlength: 20
+                    }  
+                },
+                messages: {
+                    username: {
+                        required: "请输入目录名称",
+                        maxlength: "目录名称过长，请检查",
+                    }
+                }
+            });
+
+        });
+    </script>
+{% endblock %}
+
+{% block main %}
+
+    <div class="container-fluid">
+
+        <!-- BEGIN PAGE HEADER-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                <h3 class="page-title">
+
+                    目录
+                    <small>新增</small>
+
+                </h3>
+
+                <ul class="breadcrumb">
+
+                    <li>
+                        <i class="icon-circle-arrow-left"></i>
+
+                        <a href="/admin/catalogue/{{maincate.id}}">返回首页</a>
+
+                    </li>
+
+                </ul>
+
+                <!-- END PAGE TITLE & BREADCRUMB-->
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE HEADER-->
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN SAMPLE TABLE PORTLET-->
+
+                <div class="portlet box red">
+
+                    <div class="portlet-title">
+
+                        <div class="caption"><i class="icon-edit"></i>新建目录</div>
+
+                        <div class="tools">
+
+                            <a href="javascript:;" class="collapse"></a>
+
+                            <a href="javascript:;" class="remove"></a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="portlet-body form">
+
+                        <form action="/admin/add/catalogue" method="post" id="cata_form" class="form-horizontal">
+                            {% csrf_token %}
+                            <div class="control-group">
+
+                                <label class="control-label" style="text-align: left; width: 80px">目录名称</label>
+
+                                <div class="controls  margin_left0">
+
+                                    <input type="text" name="blogcata" placeholder="请输入目录名称.." class="m-wrap large">
+                                    <input type="hidden" name="cateid" value="{{maincate.id}}">
+                                </div>
+
+                            </div>
+                            <div class="form-actions padding_left10">
+
+                                <button type="button" id="add_cata" class="btn blue">保存</button>
+                                <a href="/admin/typemanage"><button type="button" id="cancel" class="btn red">取消</button></a>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <!-- END SAMPLE TABLE PORTLET-->
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
