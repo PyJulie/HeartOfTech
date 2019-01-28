@@ -34,10 +34,10 @@
 ## <a name="3">如何使用</a>
 
 需要安装的包：
-django
-django-tagging
-pillow(该包为PIL的一个分支，目前pip和easy_install好像都无法下载安装PIL了)
-MySQL-python（还有一个数据库驱动，我使用的是MySQL，你也可以使用其他驱动）
+* django
+* django-tagging
+* pillow(该包为PIL的一个分支，由于停止维护，目前pip和easy_install好像都无法下载安装PIL了)
+* MySQL-python（还有一个数据库驱动，我使用的是MySQL，你也可以使用其他驱动）
 
 安装完成后，打开settings，修改其中的数据库配置。配置如下：
 
